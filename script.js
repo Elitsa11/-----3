@@ -15,6 +15,14 @@ const messages = [
   'Впечатлен съм от резултата.'
 ];
 
+const donationMessages = [
+  'ShadowX donated $100',
+  'PixselPro donated $20',
+  'CyberWolf donated $500',
+  'LegendaryStar donated $75',
+  'NovaQueen donated $150'
+];
+
 const nameColors = ['red', 'cyan', 'lime', 'orange'];
 const messageColors = ['#ff8a65', '#4dd0e1', '#ffab40', '#9ccc65', '#7986cb', '#ec407a', '#26a69a', '#7e57c2'];
 
@@ -43,11 +51,18 @@ function renderMessage(author, text, authorColor, messageColor, alignRight = fal
 
 function generateMessage() {
   const author = getRandomItem(users);
-  let text = getRandomItem(messages);
-  const emojis = ['😊', '😉', '🚀', '🔥', '✨', '💬', '👍'];
-  if (Math.random() < 0.4) {
-    text += ' ' + getRandomItem(emojis);
+  let text;
+
+  if (Math.random() < 0.25) {
+    text = getRandomItem(donationMessages);
+  } else {
+    text = getRandomItem(messages);
+    const emojis = ['😊', '😉', '🚀', '🔥', '✨', '💬', '👍'];
+    if (Math.random() < 0.4) {
+      text += ' ' + getRandomItem(emojis);
+    }
   }
+
   const authorColor = getRandomItem(nameColors);
   const messageColor = getRandomItem(messageColors);
   const alignRight = Math.random() > 0.5;
