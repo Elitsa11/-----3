@@ -77,21 +77,31 @@ button:disabled {
   gap: 18px;
 }
 
-.subscribers {
+.status-counters {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 12px;
+  text-align: right;
+}
+
+.subscribers,
+.viewers {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   color: #b8c2d1;
 }
 
-.subscribers .label {
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
+.subscribers .label,
+.viewers .label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.subscribers strong {
-  font-size: 1.2rem;
+.subscribers strong,
+.viewers strong {
+  font-size: 1.1rem;
   color: #fff;
 }
 
@@ -130,10 +140,9 @@ button:disabled {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 0.95rem;
-  color: #111;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  font-size: 1rem;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
 }
 
 .message-body {
@@ -154,13 +163,43 @@ button:disabled {
 }
 
 .message strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
+}
+
+.message .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #111;
+  background: #ffd54f;
 }
 
 .message span {
   line-height: 1.6;
   color: #e7ecff;
+}
+
+.message.banned {
+  background: rgba(255, 85, 85, 0.15);
+  border-color: rgba(255, 90, 90, 0.7);
+}
+
+.message.banned strong {
+  color: #ffdddd;
+}
+
+.message.banned span {
+  color: #ffe7e7;
 }
 
 .message.user-right {
