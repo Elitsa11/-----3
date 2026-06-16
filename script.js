@@ -15,9 +15,8 @@ const messages = [
   'Впечатлен съм от резултата.'
 ];
 
-const colors = [
-  '#ff8a65', '#4dd0e1', '#ffab40', '#9ccc65', '#7986cb', '#ec407a', '#26a69a', '#7e57c2'
-];
+const nameColors = ['red', 'cyan', 'lime', 'orange'];
+const messageColors = ['#ff8a65', '#4dd0e1', '#ffab40', '#9ccc65', '#7986cb', '#ec407a', '#26a69a', '#7e57c2'];
 
 const chatWindow = document.getElementById('chatWindow');
 const startButton = document.getElementById('startButton');
@@ -28,24 +27,31 @@ function getRandomItem(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function renderMessage(author, text, color, alignRight = false) {
+function renderMessage(author, text, authorColor, messageColor, alignRight = false) {
   const messageEl = document.createElement('div');
   messageEl.className = `message${alignRight ? ' user-right' : ''}`;
-  messageEl.style.color = color;
+  messageEl.style.borderColor = messageColor;
   messageEl.innerHTML = `
-    <strong>${author}</strong>
+    <strong style="color: ${authorColor};">${author}</strong>
     <span>${text}</span>
   `;
   chatWindow.appendChild(messageEl);
-  chatWindow.scrollTo({ top: chatWindow.scrollHeight, behavior: 'smooth' });
+  requestAnimationFrame(() => {
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  });
 }
 
 function generateMessage() {
   const author = getRandomItem(users);
-  const text = getRandomItem(messages);
-  const color = getRandomItem(colors);
+  let text = getRandomItem(messages);
+  const emojis = ['😊', '😉', '🚀', '🔥', '✨', '💬', '👍'];
+  if (Math.random() < 0.4) {
+    text += ' ' + getRandomItem(emojis);
+  }
+  const authorColor = getRandomItem(nameColors);
+  const messageColor = getRandomItem(messageColors);
   const alignRight = Math.random() > 0.5;
-  renderMessage(author, text, color, alignRight);
+  renderMessage(author, text, authorColor, messageColor, alignRight);
 }
 
 function startChat() {

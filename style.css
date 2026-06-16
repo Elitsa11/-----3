@@ -85,6 +85,7 @@ button:disabled {
   padding: 16px 18px;
   border-radius: 18px;
   position: relative;
+  border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
   animation: fadeInUp 0.35s ease forwards;
