@@ -34,8 +34,14 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .top-bar h1 {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: clamp(1.6rem, 2vw, 2.4rem);
 }
 
@@ -65,6 +71,30 @@ button:disabled {
   opacity: 0.65;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.subscribers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #b8c2d1;
+}
+
+.subscribers .label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.subscribers strong {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
 .chat-panel {
   padding: 20px 24px 24px;
 }
@@ -77,12 +107,12 @@ button:disabled {
 }
 
 .message {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
   margin-bottom: 18px;
   max-width: 84%;
-  padding: 16px 18px;
+  padding: 14px 18px;
   border-radius: 18px;
   position: relative;
   border: 1px solid transparent;
@@ -91,13 +121,34 @@ button:disabled {
   animation: fadeInUp 0.35s ease forwards;
 }
 
+.avatar {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.message-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .message::before {
   content: '';
   position: absolute;
   left: -10px;
-  top: 20px;
+  top: 22px;
   width: 8px;
-  height: 40px;
+  height: 36px;
   border-radius: 12px;
   background: currentColor;
 }
@@ -114,12 +165,22 @@ button:disabled {
 
 .message.user-right {
   margin-left: auto;
-  background: rgba(88, 130, 255, 0.15);
+  background: rgba(88, 130, 255, 0.18);
 }
 
 .message.user-right::before {
   left: auto;
   right: -10px;
+}
+
+.message.donation {
+  background: rgba(255, 190, 47, 0.18);
+  border-color: #ffb300;
+  animation: pulse 1.2s ease forwards;
+}
+
+.message.donation strong {
+  color: #ffeb3b !important;
 }
 
 @keyframes fadeInUp {
@@ -130,6 +191,15 @@ button:disabled {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.01);
   }
 }
 
